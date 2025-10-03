@@ -90,3 +90,27 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Grid background pattern */
+.bg-grid-pattern {
+  background-size: 100px 100px;
+  background-image: linear-gradient(
+      to right,
+      hsl(var(--foreground) / 0.08) 4px,
+      transparent 4px
+    ),
+    linear-gradient(
+      to bottom,
+      hsl(var(--foreground) / 0.08) 4px,
+      transparent 4px
+    );
+}
+
+.dark .bg-grid-pattern {
+  background-image: linear-gradient(
+      to right,
+      hsl(var(--border) / 0.5) 2px,
+      transparent 2px
+    ),
+    linear-gradient(to bottom, hsl(var(--border) / 0.5) 2px, transparent 2px);
+}
