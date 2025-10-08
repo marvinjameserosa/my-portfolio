@@ -31,7 +31,8 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
+    // MODIFICATION HERE: Removed min-h-screen and used padding instead
+    <section className="relative flex flex-col items-center justify-center pt-24 pb-16 md:py-32 px-4 overflow-hidden">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-grid-pattern opacity-100 dark:opacity-100" />
         <div className="absolute inset-0 bg-background/70" />
@@ -134,7 +135,6 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* MODIFICATION HERE: Added 'hidden' and 'md:block' to hide on small screens */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -152,7 +152,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}
-        className="absolute bottom-16 z-10"
+        className="mt-16"
       >
         <motion.div
           animate={{ y: [0, -8, 0] }}
