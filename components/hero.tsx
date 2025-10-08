@@ -12,6 +12,16 @@ export default function Hero() {
 
   useEffect(() => {
     setMounted(true);
+
+    // Hide Spline logo
+    const style = document.createElement("style");
+    style.innerHTML = `
+      #spline-logo {
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+    `;
+    document.head.appendChild(style);
   }, []);
 
   if (!mounted) return null;
@@ -124,14 +134,15 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
+        {/* MODIFICATION HERE: Added 'hidden' and 'md:block' to hide on small screens */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="w-full md:w-1/2 h-[250px] md:h-[400px] relative"
+          className="hidden md:block w-full md:w-1/2 h-[400px] relative"
         >
           <Spline
-            scene="https://prod.spline.design/1KJTrsRw8Mh6vC9d/scene.splinecode"
+            scene="https://prod.spline.design/aaprX7evb-X9qAEU/scene.splinecode"
             className="w-full h-full"
           />
         </motion.div>
