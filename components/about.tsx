@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export default function About() {
   return (
@@ -29,13 +29,15 @@ export default function About() {
             <Card>
               <CardContent className="p-6">
                 <p className="text-lg mb-4">
-                  I'm a passionate full-stack developer with expertise in building modern web applications. With a
-                  strong foundation in both frontend and backend technologies, I create seamless, user-focused
-                  experiences that solve real-world problems.
+                  I&apos;m a passionate full-stack developer with expertise in
+                  building modern web applications. With a strong foundation in
+                  both frontend and backend technologies, I create seamless,
+                  user-focused experiences that solve real-world problems.
                 </p>
                 <p className="text-lg mb-4">
-                  My approach combines clean code principles with innovative solutions, ensuring applications are not
-                  only functional but also maintainable and scalable.
+                  My approach combines clean code principles with innovative
+                  solutions, ensuring applications are not only functional but
+                  also maintainable and scalable.
                 </p>
                 <div className="flex flex-wrap gap-2 mt-6">
                   <Badge variant="outline" className="text-sm">
@@ -67,8 +69,9 @@ export default function About() {
               <div className="text-center p-6">
                 <h3 className="text-2xl font-bold mb-4">My Mission</h3>
                 <p className="text-lg">
-                  To create elegant, efficient, and accessible web applications that deliver exceptional user
-                  experiences while solving complex technical challenges.
+                  To create elegant, efficient, and accessible web applications
+                  that deliver exceptional user experiences while solving
+                  complex technical challenges.
                 </p>
               </div>
             </div>
@@ -76,5 +79,5 @@ export default function About() {
         </div>
       </div>
     </section>
-  )
+  );
 }

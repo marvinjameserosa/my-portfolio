@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,30 +7,11 @@ import Spline from "@splinetool/react-spline";
 import { TypeAnimation } from "react-type-animation";
 
 export default function Hero() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-
-    // Hide Spline logo
-    const style = document.createElement("style");
-    style.innerHTML = `
-      #spline-logo {
-        opacity: 0 !important;
-        pointer-events: none !important;
-      }
-    `;
-    document.head.appendChild(style);
-  }, []);
-
-  if (!mounted) return null;
-
   const scrollToAbout = () => {
     document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    // MODIFICATION HERE: Removed min-h-screen and used padding instead
     <section className="relative flex flex-col items-center justify-center pt-24 pb-16 md:py-32 px-4 overflow-hidden">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-grid-pattern opacity-100 dark:opacity-100" />
@@ -54,7 +34,7 @@ export default function Hero() {
               transition={{ duration: 0.8 }}
               className="text-xl md:text-2xl text-muted-foreground"
             >
-              Hi, I'm
+              Hi, I&apos;m
             </motion.p>
             <motion.h1
               variants={{

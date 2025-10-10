@@ -1,46 +1,48 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Github, Linkedin, Mail, MessageSquare } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Github, Linkedin, Mail, MessageSquare } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Contact() {
-  const { toast } = useToast()
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
     toast({
       title: "Message sent!",
       description: "Thank you for reaching out. I'll get back to you soon.",
-    })
+    });
 
-    setFormData({ name: "", email: "", message: "" })
-    setIsSubmitting(false)
-  }
+    setFormData({ name: "", email: "", message: "" });
+    setIsSubmitting(false);
+  };
 
   return (
     <section id="contact" className="py-20 px-4 md:px-6 lg:px-8 scroll-mt-16">
@@ -55,7 +57,8 @@ export default function Contact() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
           <div className="h-1 w-20 bg-primary mx-auto"></div>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind or want to discuss opportunities? I'd love to hear from you.
+            Have a project in mind or want to discuss opportunities? I&apos;d
+            love to hear from you.
           </p>
         </motion.div>
 
@@ -104,7 +107,11 @@ export default function Contact() {
                       onChange={handleChange}
                     />
                   </div>
-                  <Button type="submit" className="w-full" disabled={isSubmitting}>
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    disabled={isSubmitting}
+                  >
                     {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
@@ -178,7 +185,9 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="font-medium">Availability</h4>
-                      <p className="text-sm text-muted-foreground">Open to freelance and full-time opportunities</p>
+                      <p className="text-sm text-muted-foreground">
+                        Open to freelance and full-time opportunities
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -188,5 +197,5 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  )
+  );
 }
