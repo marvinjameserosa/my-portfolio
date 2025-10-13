@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -37,15 +37,15 @@ export default function ExperienceCarousel({
     return () => clearInterval(interval);
   }, [currentIndex, isAutoPlaying, experiences.length]);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % experiences.length);
-  };
+  }, [experiences.length]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentIndex(
       (prev) => (prev - 1 + experiences.length) % experiences.length
     );
-  };
+  }, [experiences.length]);
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
@@ -63,7 +63,7 @@ export default function ExperienceCarousel({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [nextSlide, prevSlide]);
 
   if (experiences.length === 0) {
     return (

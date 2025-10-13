@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -51,15 +51,15 @@ export default function LeadershipCarousel({
     return () => clearInterval(interval);
   }, [currentIndex, isAutoPlaying, activities.length]);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % activities.length);
-  };
+  }, [activities.length]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentIndex(
       (prev) => (prev - 1 + activities.length) % activities.length
     );
-  };
+  }, [activities.length]);
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
@@ -77,7 +77,7 @@ export default function LeadershipCarousel({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [nextSlide, prevSlide]);
 
   if (activities.length === 0) {
     return (

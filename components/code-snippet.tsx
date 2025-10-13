@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Check, Copy, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -38,7 +38,19 @@ export default function CodeSnippet({
   useEffect(() => {
     // keep index in range if items change
     if (index > items.length - 1) setIndex(Math.max(0, items.length - 1));
-  }, [items.length]);
+  }, [items.length, index]);
+
+  const prev = useCallback(
+    () =>
+      setIndex((i) =>
+        items.length ? (i - 1 + items.length) % items.length : 0
+      ),
+    [items.length]
+  );
+  const next = useCallback(
+    () => setIndex((i) => (items.length ? (i + 1) % items.length : 0)),
+    [items.length]
+  );
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -47,12 +59,7 @@ export default function CodeSnippet({
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [index, items.length]);
-
-  const prev = () =>
-    setIndex((i) => (items.length ? (i - 1 + items.length) % items.length : 0));
-  const next = () =>
-    setIndex((i) => (items.length ? (i + 1) % items.length : 0));
+  }, [prev, next]);
 
   const copyToClipboard = async (text: string) => {
     await navigator.clipboard.writeText(text);

@@ -13,7 +13,6 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github, Code } from "lucide-react";
-import CodeSnippet from "./code-snippet";
 import CodeCarousel from "./code-carousel";
 
 type Repository = {

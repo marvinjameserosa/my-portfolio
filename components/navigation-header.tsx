@@ -128,7 +128,7 @@ export default function TouchBarSidebar() {
           <div className="bg-black/30 dark:bg-white/5 backdrop-blur-3xl rounded-2xl border border-white/10 dark:border-white/15 shadow-2xl overflow-hidden">
             <div className="flex flex-col">
               {/* Navigation Items */}
-              {navItems.map((item, index) => (
+              {navItems.map((item) => (
                 <motion.button
                   key={item.id}
                   onClick={item.onClick}

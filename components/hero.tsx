@@ -87,7 +87,7 @@ export default function Hero() {
             I believe the most powerful ideas are the ones that bring people
             together. My work is about engineering those dreams into reality by
             building intelligent, secure platforms where communities can thrive
-            and create what's next.
+            and create what&apos;s next.
           </motion.p>
 
           <motion.div
