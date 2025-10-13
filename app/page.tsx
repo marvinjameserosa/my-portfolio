@@ -3,6 +3,7 @@ import About from "@/components/about";
 import Skills from "@/components/skills";
 import Projects from "@/components/projects";
 import Experience from "@/components/experience";
+import Leadership from "@/components/leadership";
 import Contact from "@/components/contact";
 import ThemeToggle from "@/components/theme-toggle";
 
@@ -17,6 +18,7 @@ export default function Home() {
       <Skills />
       <Projects />
       <Experience />
+      <Leadership />
       <Contact />
     </main>
   );
