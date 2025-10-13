@@ -13,6 +13,7 @@ import {
   MessageCircle,
   Sun,
   Moon,
+  MoreHorizontal,
 } from "lucide-react";
 
 export default function TouchBarSidebar() {
@@ -20,6 +21,8 @@ export default function TouchBarSidebar() {
   const [activeSection, setActiveSection] = useState("hero");
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Avoid hydration mismatch
   useEffect(() => {
@@ -122,7 +125,7 @@ export default function TouchBarSidebar() {
   return (
     <>
       {/* MacBook Touch Bar Style Left Sidebar - Desktop Only */}
-      <div className="hidden md:fixed md:left-0 md:top-0 md:w-0 md:h-screen md:flex md:items-center z-50 pointer-events-none">
+      <div className="hidden lg:fixed lg:left-0 lg:top-0 lg:w-0 lg:h-screen lg:flex lg:items-center z-50 pointer-events-none">
         <motion.aside
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -225,15 +228,113 @@ export default function TouchBarSidebar() {
       </div>
 
       {/* Mobile Navigation - Bottom Fixed */}
-      <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
-        <div className="bg-black/30 dark:bg-white/5 backdrop-blur-3xl rounded-2xl border border-white/10 dark:border-white/15 shadow-2xl overflow-hidden">
-          <div className="flex items-center px-2 py-2">
-            {navItems.slice(0, 5).map((item) => (
+      <div className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-auto">
+        <div className="relative">
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="absolute bottom-full right-0 mb-2 w-max"
+              >
+                <div className="bg-black/30 dark:bg-white/5 backdrop-blur-3xl rounded-2xl border border-white/10 dark:border-white/15 shadow-2xl overflow-hidden p-2 flex flex-col items-center">
+                  {/* Rest of the nav items */}
+                  {navItems.slice(5).map((item) => (
+                    <motion.button
+                      key={item.id}
+                      onClick={() => {
+                        item.onClick();
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`w-full relative flex items-center justify-center p-3 my-1 transition-all duration-300 rounded-xl ${
+                        activeSection === item.id
+                          ? "bg-white/20 dark:bg-white/15"
+                          : "hover:bg-white/10 dark:hover:bg-white/8"
+                      }`}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <div
+                        className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-300 ${
+                          activeSection === item.id
+                            ? "bg-primary text-primary-foreground shadow-lg"
+                            : "text-white/80 dark:text-white/70"
+                        }`}
+                      >
+                        {item.icon}
+                      </div>
+                    </motion.button>
+                  ))}
+                  {/* Separator */}
+                  <div className="my-1 w-full h-px bg-white/20 dark:bg-white/30" />
+                  {/* Theme toggle in menu */}
+                  <motion.button
+                    onClick={() =>
+                      setTheme(theme === "dark" ? "light" : "dark")
+                    }
+                    className="w-full flex items-center justify-center p-3 my-1 hover:bg-white/10 dark:hover:bg-white/8 transition-all duration-300 rounded-xl"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <div className="flex items-center justify-center w-8 h-8 rounded-lg text-white/80 dark:text-white/70 transition-all duration-300">
+                      {mounted && theme === "dark" ? (
+                        <Sun className="h-5 w-5" />
+                      ) : (
+                        <Moon className="h-5 w-5" />
+                      )}
+                    </div>
+                  </motion.button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <div className="bg-black/30 dark:bg-white/5 backdrop-blur-3xl rounded-2xl border border-white/10 dark:border-white/15 shadow-2xl overflow-hidden">
+            <div className="flex items-center px-2 py-2">
+              {navItems.slice(0, 5).map((item) => (
+                <motion.button
+                  key={item.id}
+                  onClick={item.onClick}
+                  className={`relative flex items-center justify-center p-3 mx-1 transition-all duration-300 rounded-xl ${
+                    activeSection === item.id
+                      ? "bg-white/20 dark:bg-white/15"
+                      : "hover:bg-white/10 dark:hover:bg-white/8"
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <div
+                    className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-300 ${
+                      activeSection === item.id
+                        ? "bg-primary text-primary-foreground shadow-lg"
+                        : "text-white/80 dark:text-white/70"
+                    }`}
+                  >
+                    {item.icon}
+                  </div>
+
+                  {/* Active Indicator for Mobile */}
+                  {activeSection === item.id && (
+                    <motion.div
+                      layoutId="mobileActiveIndicator"
+                      className="absolute top-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-primary rounded-full"
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                </motion.button>
+              ))}
+
+              {/* More button */}
               <motion.button
-                key={item.id}
-                onClick={item.onClick}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className={`relative flex items-center justify-center p-3 mx-1 transition-all duration-300 rounded-xl ${
-                  activeSection === item.id
+                  isMobileMenuOpen
                     ? "bg-white/20 dark:bg-white/15"
                     : "hover:bg-white/10 dark:hover:bg-white/8"
                 }`}
@@ -241,43 +342,12 @@ export default function TouchBarSidebar() {
                 whileTap={{ scale: 0.95 }}
               >
                 <div
-                  className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-300 ${
-                    activeSection === item.id
-                      ? "bg-primary text-primary-foreground shadow-lg"
-                      : "text-white/80 dark:text-white/70"
-                  }`}
+                  className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-300 text-white/80 dark:text-white/70`}
                 >
-                  {item.icon}
+                  <MoreHorizontal className="h-5 w-5" />
                 </div>
-
-                {/* Active Indicator for Mobile */}
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="mobileActiveIndicator"
-                    className="absolute top-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-primary rounded-full"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
               </motion.button>
-            ))}
-
-            {/* Mobile Theme Toggle */}
-            <div className="mx-1 w-px h-6 bg-white/20 dark:bg-white/30" />
-
-            <motion.button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="flex items-center justify-center p-3 mx-1 hover:bg-white/10 dark:hover:bg-white/8 transition-all duration-300 rounded-xl"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg text-white/80 dark:text-white/70 transition-all duration-300">
-                {mounted && theme === "dark" ? (
-                  <Sun className="h-5 w-5" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                )}
-              </div>
-            </motion.button>
+            </div>
           </div>
         </div>
       </div>
