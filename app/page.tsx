@@ -5,14 +5,12 @@ import Projects from "@/components/projects";
 import Experience from "@/components/experience";
 import Leadership from "@/components/leadership";
 import Contact from "@/components/contact";
-import ThemeToggle from "@/components/theme-toggle";
+import NavigationHeader from "@/components/navigation-header";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <div className="fixed top-4 right-4 z-50">
-        <ThemeToggle />
-      </div>
+      <NavigationHeader />
       <Hero />
       <About />
       <Skills />

@@ -12,7 +12,10 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative flex flex-col items-center justify-center pt-24 pb-16 md:py-32 px-4 overflow-hidden">
+    <section
+      id="hero"
+      className="relative flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden pt-20"
+    >
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-grid-pattern opacity-100 dark:opacity-100" />
         <div className="absolute inset-0 bg-background/70" />
