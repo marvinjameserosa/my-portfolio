@@ -38,25 +38,31 @@ export default function TouchBarSidebar() {
         "leadership",
         "contact",
       ];
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
 
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
-            setActiveSection(section);
-            break;
+      // Handle case when at the bottom of the page
+      if (scrollPosition + windowHeight >= document.body.offsetHeight - 10) {
+        setActiveSection("contact");
+        return;
+      }
+
+      let currentSection = "hero";
+      for (const sectionId of sections) {
+        const sectionElement = document.getElementById(sectionId);
+        if (sectionElement) {
+          const sectionTop = sectionElement.offsetTop;
+          if (scrollPosition >= sectionTop - windowHeight / 2) {
+            currentSection = sectionId;
           }
         }
       }
+      setActiveSection(currentSection);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Call once to set initial state
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial check
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
