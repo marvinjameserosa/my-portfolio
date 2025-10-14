@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import ExperienceCarousel from "./experience-carousel";
+import ExperienceCarousel from "@/components/experience-carousel";
 
 type Experience = {
   company: string;
@@ -15,62 +15,62 @@ type Experience = {
 export default function Experience() {
   const experiences: Experience[] = [
     {
-      company: "TechInnovate Solutions",
-      position: "Senior Full-Stack Developer",
-      period: "Jan 2022 - Present",
+      company: "Tomeku (Freelance)",
+      position: "Principal Software Engineer",
+      period: "Jun. 2025 – Present",
       description:
-        "Leading development of enterprise SaaS platforms for financial services clients.",
+        "Architecting and deploying end-to-end technical ecosystems for B2B clients, from core infrastructure to the application layer.",
       technologies: [
-        "React",
-        "Next.js",
-        "Node.js",
-        "TypeScript",
-        "PostgreSQL",
         "AWS",
+        "Azure",
+        "Google Cloud",
+        "Okta",
+        "Python",
+        "Proxmox VE",
+        "Network Architecture",
       ],
       responsibilities: [
-        "Architected and implemented scalable microservices architecture",
-        "Led a team of 5 developers using Agile methodologies",
-        "Optimized application performance, reducing load times by 40%",
-        "Implemented CI/CD pipelines with GitHub Actions and AWS",
-        "Collaborated with UX designers to create intuitive user interfaces",
+        "Architected and deployed scalable, end-to-end technical ecosystems for B2B clients.",
+        "Engineered and provisioned complete IT infrastructures from the ground up, including identity management and collaboration suites.",
+        "Designed and maintained resilient network infrastructures to support high-throughput, real-time data ingestion.",
       ],
     },
     {
-      company: "DataFlow Systems",
-      position: "Full-Stack Developer",
-      period: "Mar 2020 - Dec 2021",
+      company: "Accenture",
+      position: "Package App Development Associate Intern",
+      period: "Jul. 2024 – Sep. 2024",
       description:
-        "Developed data visualization and analytics platforms for business intelligence.",
+        "Building automated workflow solutions and data pipelines to streamline enterprise-level operations.",
       technologies: [
-        "React",
-        "Express.js",
-        "MongoDB",
-        "D3.js",
-        "GraphQL",
-        "Docker",
+        "Microsoft Power Platform",
+        "Power BI",
+        "Power Automate",
+        "Azure SQL",
+        "Office 365",
       ],
       responsibilities: [
-        "Built responsive dashboards with real-time data visualization",
-        "Developed RESTful and GraphQL APIs for data retrieval and manipulation",
-        "Implemented authentication and authorization systems",
-        "Optimized database queries for large datasets",
-        "Participated in code reviews and mentored junior developers",
+        "Developed automated solutions on the Microsoft Power Platform to streamline critical project workflows.",
+        "Engineered and executed comprehensive security and integration testing strategies across the Office 365 environment.",
+        "Implemented robust backend data pipelines to Azure SQL, enforcing high data integrity through automated validation rules.",
       ],
     },
     {
-      company: "WebSphere Innovations",
-      position: "Frontend Developer",
-      period: "Jun 2018 - Feb 2020",
+      company: "Rhenus Logistics",
+      position: "IT Infrastructure Specialist Intern",
+      period: "Aug. 2023 – Dec. 2023",
       description:
-        "Created interactive web applications for e-commerce and media clients.",
-      technologies: ["React", "Redux", "JavaScript", "SASS", "Webpack", "Jest"],
+        "Managing and securing the core network infrastructure and identity systems for a global logistics leader.",
+      technologies: [
+        "Active Directory",
+        "Okta",
+        "LAN/WAN Architecture",
+        "Network Security",
+        "IT Asset Management",
+      ],
       responsibilities: [
-        "Developed responsive and accessible user interfaces",
-        "Implemented state management with Redux and Context API",
-        "Created reusable component libraries",
-        "Wrote unit and integration tests with Jest and React Testing Library",
-        "Collaborated with backend developers to integrate APIs",
+        "Maintained the reliability and performance of mission-critical LAN/WAN infrastructure to support continuous logistics operations.",
+        "Administered user lifecycle and system access controls using Active Directory and Okta to enforce security and data governance.",
+        "Oversaw the complete IT asset lifecycle, ensuring operational readiness and supporting strategic capacity planning.",
       ],
     },
   ];
@@ -93,7 +93,7 @@ export default function Experience() {
           </h2>
           <div className="h-1 w-20 bg-primary mx-auto"></div>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            My professional journey building real-world applications
+            Connecting the dots of my professional journey.
           </p>
         </motion.div>
 
