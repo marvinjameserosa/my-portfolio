@@ -60,13 +60,13 @@ export default function Hero() {
           >
             <TypeAnimation
               sequence={[
-                "Dream Engineer.",
+                "Technical Leader",
                 2000,
-                "Community Architect.",
+                "Community Builder",
                 2000,
-                "AI Engineer.",
+                "Hardware Engineer",
                 2000,
-                "Digital Guardian.",
+                "Security Strategist",
                 2000,
               ]}
               wrapper="p"
@@ -111,9 +111,9 @@ export default function Hero() {
             <Button
               variant="outline"
               className="rounded-full px-6"
-              onClick={() => window.open("/path-to-your/cv.pdf", "_blank")}
+              onClick={() => window.open("cv.pdf", "_blank")}
             >
-              View Résumé
+              View Curicullum Vitae
             </Button>
           </motion.div>
         </motion.div>
