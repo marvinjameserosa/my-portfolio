@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -58,7 +59,7 @@ export default function About() {
           ></motion.div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div className="grid md:grid-cols-2 gap-8 items-start">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -155,164 +156,273 @@ export default function About() {
             </motion.div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="relative h-[300px] md:h-[400px]"
-          >
+          <div className="space-y-8">
+            {/* Portrait Section */}
             <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="h-full"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+              viewport={{ once: true }}
+              className="relative h-[280px] md:h-[320px]"
             >
-              <Card className="h-full relative overflow-hidden">
-                {/* Animated background gradient */}
-                <motion.div
-                  animate={{
-                    background: [
-                      "linear-gradient(135deg, hsl(var(--primary) / 0.3) 0%, hsl(var(--primary) / 0.1) 100%)",
-                      "linear-gradient(135deg, hsl(var(--primary) / 0.4) 0%, hsl(var(--primary) / 0.15) 100%)",
-                      "linear-gradient(135deg, hsl(var(--primary) / 0.3) 0%, hsl(var(--primary) / 0.1) 100%)",
-                    ],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute inset-0"
-                ></motion.div>
-
-                {/* Animated decorative circles */}
-                <motion.div
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.5, 0.3],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-primary/20 blur-2xl"
-                ></motion.div>
-                <motion.div
-                  animate={{
-                    scale: [1, 1.3, 1],
-                    opacity: [0.2, 0.4, 0.2],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1,
-                  }}
-                  className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-primary/20 blur-2xl"
-                ></motion.div>
-
-                <CardContent className="relative h-full flex flex-col items-center justify-center p-8 text-center">
-                  {/* Animated icon or decorative element */}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="h-full"
+              >
+                <Card className="h-full relative overflow-hidden">
+                  {/* Animated background gradient */}
                   <motion.div
-                    initial={{ scale: 0, rotate: -180 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 200,
-                      damping: 15,
-                      delay: 0.6,
+                    animate={{
+                      background: [
+                        "linear-gradient(135deg, hsl(var(--primary) / 0.2) 0%, hsl(var(--primary) / 0.05) 100%)",
+                        "linear-gradient(135deg, hsl(var(--primary) / 0.3) 0%, hsl(var(--primary) / 0.1) 100%)",
+                        "linear-gradient(135deg, hsl(var(--primary) / 0.2) 0%, hsl(var(--primary) / 0.05) 100%)",
+                      ],
                     }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className="absolute inset-0"
+                  ></motion.div>
+
+                  {/* Portrait Image */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
                     viewport={{ once: true }}
-                    className="mb-4"
+                    className="absolute inset-0 flex items-center justify-center pb-12"
                   >
-                    <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
-                      <motion.svg
+                    <div className="relative w-44 h-44 md:w-52 md:h-52">
+                      {/* Animated ring around portrait */}
+                      <motion.div
                         animate={{ rotate: 360 }}
                         transition={{
                           duration: 20,
                           repeat: Infinity,
                           ease: "linear",
                         }}
-                        className="w-8 h-8 text-primary"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
+                        className="absolute inset-0 rounded-full border-2 border-primary/30 border-dashed"
+                      ></motion.div>
+
+                      {/* Inner glowing ring */}
+                      <motion.div
+                        animate={{
+                          scale: [1, 1.05, 1],
+                          opacity: [0.5, 0.8, 0.5],
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                        className="absolute inset-2 rounded-full bg-primary/10 blur-xl"
+                      ></motion.div>
+
+                      {/* Portrait Image */}
+                      <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 20,
+                        }}
+                        className="relative w-full h-full rounded-full overflow-hidden border-4 border-background shadow-2xl"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M13 10V3L4 14h7v7l9-11h-7z"
+                        <Image
+                          src="/portrait.jpg"
+                          alt="Portrait"
+                          fill
+                          className="object-cover"
+                          priority
                         />
-                      </motion.svg>
+                      </motion.div>
+
+                      {/* Decorative corner elements */}
+                      <motion.div
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          opacity: [0.4, 0.7, 0.4],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                        className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary/40 blur-md"
+                      ></motion.div>
+                      <motion.div
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          opacity: [0.4, 0.7, 0.4],
+                        }}
+                        transition={{
+                          duration: 2.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 0.5,
+                        }}
+                        className="absolute -bottom-2 -left-2 w-6 h-6 rounded-full bg-primary/40 blur-md"
+                      ></motion.div>
                     </div>
                   </motion.div>
 
-                  <motion.h3
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.7 }}
-                    viewport={{ once: true }}
-                    className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text"
-                  >
-                    My Mission
-                  </motion.h3>
-
+                  {/* Quote at bottom */}
                   <motion.div
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    transition={{ duration: 0.6, delay: 0.8 }}
-                    viewport={{ once: true }}
-                    className="w-12 h-0.5 bg-primary mb-6"
-                  ></motion.div>
-
-                  <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.9 }}
+                    transition={{ duration: 0.6, delay: 0.8 }}
                     viewport={{ once: true }}
-                    className="text-base md:text-lg leading-relaxed max-w-md"
+                    className="absolute bottom-0 left-0 right-0 p-4 text-center backdrop-blur-sm bg-background/80"
                   >
-                    To engineer{" "}
-                    <motion.span
+                    <motion.p
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
-                      transition={{ delay: 1.1 }}
+                      transition={{ delay: 1 }}
                       viewport={{ once: true }}
-                      className="font-semibold text-primary"
+                      className="text-sm md:text-base font-medium italic"
                     >
-                      insanely great tools
-                    </motion.span>{" "}
-                    that empower creators, innovators, and builders to design
-                    the future. My work is dedicated to building the platforms
-                    and communities that enable other talented people to push
-                    humanity forward.
-                  </motion.p>
-
-                  {/* Animated quote marks or decorative elements */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 0.1 }}
-                    transition={{ delay: 1.2 }}
-                    viewport={{ once: true }}
-                    className="absolute top-4 left-4 text-6xl font-serif text-primary"
-                  >
-                    &quot;
+                      &quot;The future isn&apos;t something you wait for.
+                      It&apos;s something you build.&quot;
+                    </motion.p>
                   </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 0.1 }}
-                    transition={{ delay: 1.2 }}
-                    viewport={{ once: true }}
-                    className="absolute bottom-4 right-4 text-6xl font-serif text-primary"
-                  >
-                    &quot;
-                  </motion.div>
-                </CardContent>
-              </Card>
+                </Card>
+              </motion.div>
             </motion.div>
-          </motion.div>
+
+            {/* My Mission Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                <Card className="relative overflow-hidden">
+                  {/* Animated background */}
+                  <motion.div
+                    animate={{
+                      background: [
+                        "linear-gradient(135deg, hsl(var(--primary) / 0.05) 0%, hsl(var(--primary) / 0.02) 100%)",
+                        "linear-gradient(135deg, hsl(var(--primary) / 0.08) 0%, hsl(var(--primary) / 0.04) 100%)",
+                        "linear-gradient(135deg, hsl(var(--primary) / 0.05) 0%, hsl(var(--primary) / 0.02) 100%)",
+                      ],
+                    }}
+                    transition={{
+                      duration: 5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className="absolute inset-0"
+                  ></motion.div>
+
+                  <CardContent className="relative p-6 md:p-8 text-center">
+                    <motion.div
+                      initial={{ scale: 0, rotate: -180 }}
+                      whileInView={{ scale: 1, rotate: 0 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 15,
+                        delay: 0.6,
+                      }}
+                      viewport={{ once: true }}
+                      className="mb-4 inline-block"
+                    >
+                      <div className="w-12 h-12 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
+                        <motion.svg
+                          animate={{ rotate: 360 }}
+                          transition={{
+                            duration: 20,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
+                          className="w-6 h-6 text-primary"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M13 10V3L4 14h7v7l9-11h-7z"
+                          />
+                        </motion.svg>
+                      </div>
+                    </motion.div>
+
+                    <motion.h3
+                      initial={{ opacity: 0, y: -20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.7 }}
+                      viewport={{ once: true }}
+                      className="text-xl md:text-2xl font-bold mb-3"
+                    >
+                      My Mission
+                    </motion.h3>
+
+                    <motion.div
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      transition={{ duration: 0.6, delay: 0.8 }}
+                      viewport={{ once: true }}
+                      className="w-12 h-0.5 bg-primary mx-auto mb-4"
+                    ></motion.div>
+
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.9 }}
+                      viewport={{ once: true }}
+                      className="text-base md:text-lg leading-relaxed"
+                    >
+                      To engineer{" "}
+                      <motion.span
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: 1.1 }}
+                        viewport={{ once: true }}
+                        className="font-semibold text-primary"
+                      >
+                        insanely great tools
+                      </motion.span>{" "}
+                      that empower creators, innovators, and builders to design
+                      the future. My work is dedicated to building the platforms
+                      and communities that enable other talented people to push
+                      humanity forward.
+                    </motion.p>
+
+                    {/* Decorative quote marks */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 0.05 }}
+                      transition={{ delay: 1.2 }}
+                      viewport={{ once: true }}
+                      className="absolute top-2 left-2 text-5xl md:text-6xl font-serif text-primary pointer-events-none"
+                    >
+                      &quot;
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 0.05 }}
+                      transition={{ delay: 1.2 }}
+                      viewport={{ once: true }}
+                      className="absolute bottom-2 right-2 text-5xl md:text-6xl font-serif text-primary pointer-events-none"
+                    >
+                      &quot;
+                    </motion.div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
