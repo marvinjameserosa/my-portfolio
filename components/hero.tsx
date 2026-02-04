@@ -21,12 +21,12 @@ export default function Hero() {
         <div className="absolute inset-0 bg-background/70" />
       </div>
 
-      <div className="container relative z-10 flex flex-col md:flex-row items-center justify-between w-full max-w-5xl mx-auto gap-8">
+      <div className="container relative z-10 flex flex-col-reverse md:flex-row items-center justify-between w-full max-w-5xl mx-auto gap-4 md:gap-8">
         <motion.div
           initial="hidden"
           animate="visible"
           transition={{ staggerChildren: 0.2 }}
-          className="text-left w-full md:w-1/2 space-y-4"
+          className="text-center md:text-left w-full md:w-1/2 space-y-4"
         >
           <div>
             <motion.p
@@ -96,7 +96,7 @@ export default function Hero() {
               visible: { opacity: 1, y: 0 },
             }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-row gap-4 pt-4"
+            className="flex flex-row gap-4 pt-4 justify-center md:justify-start"
           >
             <Button
               className="rounded-full px-6"
@@ -119,10 +119,10 @@ export default function Hero() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
-          className="hidden md:block w-full md:w-1/2 h-[400px] relative"
+          className="w-full md:w-1/2 h-[250px] sm:h-[300px] md:h-[400px] relative"
         >
           <Spline
             scene="https://prod.spline.design/aaprX7evb-X9qAEU/scene.splinecode"
