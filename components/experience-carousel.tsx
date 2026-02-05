@@ -13,8 +13,8 @@ import {
   Server,
   Cloud,
   MapPin,
+  Calendar,
 } from "lucide-react";
-import Image from "next/image";
 
 type Experience = {
   company: string;
@@ -26,8 +26,6 @@ type Experience = {
   responsibilities: string[];
   location?: string;
   icon: "briefcase" | "code" | "server" | "cloud";
-  image?: string;
-  imageAlt?: string;
 };
 
 interface ExperienceCarouselProps {
@@ -174,68 +172,43 @@ export default function ExperienceCarousel({
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <Card className="border-0 bg-gradient-to-br from-background to-background/50 backdrop-blur-sm shadow-lg">
-              {/* Image Section */}
-              {currentExp.image && (
-                <div className="relative h-48 md:h-56 overflow-hidden rounded-t-lg">
-                  <Image
-                    src={currentExp.image}
-                    alt={currentExp.imageAlt || currentExp.position}
-                    fill
-                    className="object-cover transition-transform duration-300 hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="flex items-center gap-2 text-white/90">
-                      {getIcon(currentExp.icon)}
+            <Card className="border border-border bg-card shadow-sm">
+              <CardHeader className="pb-4">
+                <div className="flex flex-col gap-4">
+                  {/* Top row: Icon, Type Badge, and Period */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary">
+                        {getIcon(currentExp.icon)}
+                      </div>
                       <Badge
                         variant="outline"
-                        className="bg-white/20 text-white border-white/30 backdrop-blur-sm"
+                        className={`text-xs font-medium ${getTypeColor(currentExp.type)}`}
                       >
                         {getTypeLabel(currentExp.type)}
                       </Badge>
                     </div>
-                  </div>
-                </div>
-              )}
-
-              <CardHeader className="pb-4">
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-3">
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between gap-3 mb-2">
-                      {!currentExp.image && (
-                        <div className="flex items-center gap-2 text-primary">
-                          {getIcon(currentExp.icon)}
-                          <Badge
-                            variant="outline"
-                            className={`text-xs font-medium ${getTypeColor(
-                              currentExp.type
-                            )}`}
-                          >
-                            {getTypeLabel(currentExp.type)}
-                          </Badge>
-                        </div>
-                      )}
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Calendar className="h-4 w-4" />
+                      <span className="font-medium">{currentExp.period}</span>
                     </div>
-                    <CardTitle className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+                  </div>
+                  
+                  {/* Position and Company */}
+                  <div>
+                    <CardTitle className="text-xl md:text-2xl font-bold text-foreground mb-1">
                       {currentExp.position}
                     </CardTitle>
-                    <div className="text-xl font-semibold text-primary mb-1">
+                    <div className="text-lg font-semibold text-primary">
                       {currentExp.company}
                     </div>
                     {currentExp.location && (
-                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                        <MapPin className="h-4 w-4" />
+                      <div className="flex items-center gap-1.5 text-sm text-muted-foreground mt-1">
+                        <MapPin className="h-3.5 w-3.5" />
                         {currentExp.location}
                       </div>
                     )}
                   </div>
-                  <Badge
-                    variant="outline"
-                    className="bg-primary/10 text-primary border-primary/30 font-medium"
-                  >
-                    {currentExp.period}
-                  </Badge>
                 </div>
               </CardHeader>
 

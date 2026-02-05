@@ -13,8 +13,6 @@ type Experience = {
   responsibilities: string[];
   location?: string;
   icon: "briefcase" | "code" | "server" | "cloud";
-  image?: string;
-  imageAlt?: string;
 };
 
 export default function Experience() {
@@ -42,9 +40,6 @@ export default function Experience() {
       ],
       location: "Remote",
       icon: "cloud",
-      image:
-        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=400&fit=crop",
-      imageAlt: "Cloud infrastructure and technology",
     },
     {
       company: "Accenture",
@@ -67,9 +62,6 @@ export default function Experience() {
       ],
       location: "Manila, Philippines",
       icon: "code",
-      image:
-        "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=400&fit=crop",
-      imageAlt: "Modern office workspace",
     },
     {
       company: "Rhenus Logistics",
@@ -92,9 +84,6 @@ export default function Experience() {
       ],
       location: "Manila, Philippines",
       icon: "server",
-      image:
-        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop",
-      imageAlt: "Server room infrastructure",
     },
   ];
 
