@@ -18,10 +18,10 @@ type Experience = {
 export default function Experience() {
   const experiences: Experience[] = [
     {
-      company: "Tomeku (Freelance)",
-      position: "Principal Software Engineer",
-      period: "Jun. 2025 – Present",
-      type: "freelance",
+      company: "Tomeku",
+      position: "Full Stack Engineer",
+      period: "Jan. 2025 – Jan 2026",
+      type: "Contract",
       description:
         "Architecting and deploying end-to-end technical ecosystems for B2B clients, from core infrastructure to the application layer.",
       technologies: [
