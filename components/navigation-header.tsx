@@ -228,7 +228,7 @@ export default function TouchBarSidebar() {
       </div>
 
       {/* Mobile Navigation - Bottom Fixed */}
-      <div className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-auto">
+      <div className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-md">
         <div className="relative">
           <AnimatePresence>
             {isMobileMenuOpen && (
@@ -237,9 +237,9 @@ export default function TouchBarSidebar() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
-                className="absolute bottom-full right-0 mb-2 w-max"
+                className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-auto min-w-[200px]"
               >
-                <div className="bg-black/30 dark:bg-white/5 backdrop-blur-3xl rounded-2xl border border-white/10 dark:border-white/15 shadow-2xl overflow-hidden p-2 flex flex-col items-center">
+                <div className="bg-background/95 dark:bg-background/95 backdrop-blur-xl rounded-2xl border border-border shadow-2xl overflow-hidden p-2 flex flex-col items-stretch">
                   {/* Rest of the nav items */}
                   {navItems.slice(5).map((item) => (
                     <motion.button
@@ -248,68 +248,77 @@ export default function TouchBarSidebar() {
                         item.onClick();
                         setIsMobileMenuOpen(false);
                       }}
-                      className={`w-full relative flex items-center justify-center p-3 my-1 transition-all duration-300 rounded-xl ${
+                      className={`w-full relative flex items-center gap-3 px-4 py-3 my-0.5 transition-all duration-300 rounded-xl ${
                         activeSection === item.id
-                          ? "bg-white/20 dark:bg-white/15"
-                          : "hover:bg-white/10 dark:hover:bg-white/8"
+                          ? "bg-primary/10"
+                          : "hover:bg-muted"
                       }`}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileTap={{ scale: 0.98 }}
                     >
                       <div
                         className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-300 ${
                           activeSection === item.id
                             ? "bg-primary text-primary-foreground shadow-lg"
-                            : "text-white/80 dark:text-white/70"
+                            : "text-muted-foreground"
                         }`}
                       >
                         {item.icon}
                       </div>
+                      <span
+                        className={`text-sm font-medium ${
+                          activeSection === item.id
+                            ? "text-primary"
+                            : "text-foreground"
+                        }`}
+                      >
+                        {item.label}
+                      </span>
                     </motion.button>
                   ))}
                   {/* Separator */}
-                  <div className="my-1 w-full h-px bg-white/20 dark:bg-white/30" />
+                  <div className="my-1.5 mx-2 h-px bg-border" />
                   {/* Theme toggle in menu */}
                   <motion.button
                     onClick={() =>
                       setTheme(theme === "dark" ? "light" : "dark")
                     }
-                    className="w-full flex items-center justify-center p-3 my-1 hover:bg-white/10 dark:hover:bg-white/8 transition-all duration-300 rounded-xl"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    className="w-full flex items-center gap-3 px-4 py-3 my-0.5 hover:bg-muted transition-all duration-300 rounded-xl"
+                    whileTap={{ scale: 0.98 }}
                   >
-                    <div className="flex items-center justify-center w-8 h-8 rounded-lg text-white/80 dark:text-white/70 transition-all duration-300">
+                    <div className="flex items-center justify-center w-8 h-8 rounded-lg text-muted-foreground transition-all duration-300">
                       {mounted && theme === "dark" ? (
                         <Sun className="h-5 w-5" />
                       ) : (
                         <Moon className="h-5 w-5" />
                       )}
                     </div>
+                    <span className="text-sm font-medium text-foreground">
+                      {theme === "dark" ? "Light Mode" : "Dark Mode"}
+                    </span>
                   </motion.button>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
 
-          <div className="bg-black/30 dark:bg-white/5 backdrop-blur-3xl rounded-2xl border border-white/10 dark:border-white/15 shadow-2xl overflow-hidden">
-            <div className="flex items-center px-2 py-2">
+          <div className="bg-background/95 dark:bg-background/95 backdrop-blur-xl rounded-2xl border border-border shadow-2xl overflow-hidden">
+            <div className="flex items-center justify-between px-1 py-1.5">
               {navItems.slice(0, 5).map((item) => (
                 <motion.button
                   key={item.id}
                   onClick={item.onClick}
-                  className={`relative flex items-center justify-center p-3 mx-1 transition-all duration-300 rounded-xl ${
+                  className={`relative flex-1 flex items-center justify-center p-2.5 mx-0.5 transition-all duration-300 rounded-xl ${
                     activeSection === item.id
-                      ? "bg-white/20 dark:bg-white/15"
-                      : "hover:bg-white/10 dark:hover:bg-white/8"
+                      ? "bg-primary/10"
+                      : "hover:bg-muted"
                   }`}
-                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <div
                     className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-300 ${
                       activeSection === item.id
                         ? "bg-primary text-primary-foreground shadow-lg"
-                        : "text-white/80 dark:text-white/70"
+                        : "text-muted-foreground"
                     }`}
                   >
                     {item.icon}
@@ -333,16 +342,17 @@ export default function TouchBarSidebar() {
               {/* More button */}
               <motion.button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`relative flex items-center justify-center p-3 mx-1 transition-all duration-300 rounded-xl ${
-                  isMobileMenuOpen
-                    ? "bg-white/20 dark:bg-white/15"
-                    : "hover:bg-white/10 dark:hover:bg-white/8"
+                className={`relative flex items-center justify-center p-2.5 mx-0.5 transition-all duration-300 rounded-xl ${
+                  isMobileMenuOpen ? "bg-primary/10" : "hover:bg-muted"
                 }`}
-                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <div
-                  className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-300 text-white/80 dark:text-white/70`}
+                  className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-300 ${
+                    isMobileMenuOpen
+                      ? "text-primary"
+                      : "text-muted-foreground"
+                  }`}
                 >
                   <MoreHorizontal className="h-5 w-5" />
                 </div>

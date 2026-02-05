@@ -14,19 +14,20 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden pt-20"
+      className="relative flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden"
     >
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-grid-pattern opacity-100 dark:opacity-100" />
         <div className="absolute inset-0 bg-background/70" />
       </div>
 
-      <div className="container relative z-10 flex flex-col md:flex-row items-center justify-between w-full max-w-5xl mx-auto gap-8">
+      <div className="container relative z-10 flex flex-col md:flex-row items-center justify-center w-full max-w-5xl mx-auto gap-6 md:gap-8">
+        {/* Text Content */}
         <motion.div
           initial="hidden"
           animate="visible"
           transition={{ staggerChildren: 0.2 }}
-          className="text-left w-full md:w-1/2 space-y-4"
+          className="text-center md:text-left w-full md:w-1/2 space-y-3 md:space-y-4 order-2 md:order-1"
         >
           <div>
             <motion.p
@@ -35,7 +36,7 @@ export default function Hero() {
                 visible: { opacity: 1, y: 0 },
               }}
               transition={{ duration: 0.8 }}
-              className="text-xl md:text-2xl text-muted-foreground"
+              className="text-lg sm:text-xl md:text-2xl text-muted-foreground"
             >
               Hi, I&apos;m
             </motion.p>
@@ -45,7 +46,7 @@ export default function Hero() {
                 visible: { opacity: 1, y: 0 },
               }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl md:text-6xl font-bold tracking-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"
             >
               Marvin James Erosa
             </motion.h1>
@@ -72,7 +73,7 @@ export default function Hero() {
               wrapper="p"
               cursor={true}
               repeat={Infinity}
-              className="text-lg md:text-xl text-muted-foreground"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground"
             />
           </motion.div>
 
@@ -82,7 +83,7 @@ export default function Hero() {
               visible: { opacity: 1, y: 0 },
             }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-base text-muted-foreground leading-relaxed"
+            className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-md mx-auto md:mx-0"
           >
             I believe the most powerful ideas are the ones that bring people
             together. My work is about engineering those dreams into reality by
@@ -96,7 +97,7 @@ export default function Hero() {
               visible: { opacity: 1, y: 0 },
             }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-row gap-4 pt-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4 justify-center md:justify-start"
           >
             <Button
               className="rounded-full px-6"
@@ -118,11 +119,12 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
+        {/* Spline Robot */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
-          className="hidden md:block w-full md:w-1/2 h-[400px] relative"
+          className="w-full md:w-1/2 h-[200px] sm:h-[280px] md:h-[400px] relative order-1 md:order-2"
         >
           <Spline
             scene="https://prod.spline.design/aaprX7evb-X9qAEU/scene.splinecode"
@@ -135,7 +137,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}
-        className="mt-16"
+        className="mt-8 md:mt-16"
       >
         <motion.div
           animate={{ y: [0, -8, 0] }}

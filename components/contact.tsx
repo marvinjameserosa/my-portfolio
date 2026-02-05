@@ -9,7 +9,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Github, Linkedin, Mail, MessageSquare } from "lucide-react";
+import { Github, Linkedin, Mail, MessageSquare, ExternalLink } from "lucide-react";
+import Link from "next/link";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Contact() {
@@ -189,6 +190,15 @@ export default function Contact() {
                         Open to freelance and full-time opportunities
                       </p>
                     </div>
+                  </div>
+
+                  <div className="pt-4 border-t">
+                    <Link href="/links">
+                      <Button className="w-full gap-2" variant="outline">
+                        <ExternalLink className="h-4 w-4" />
+                        View All My Links
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </CardContent>
