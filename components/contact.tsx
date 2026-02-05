@@ -141,7 +141,7 @@ export default function Contact() {
                         href="mailto:marvinjameserosa@gmail.com"
                         className="text-sm text-muted-foreground hover:text-primary transition-colors"
                       >
-                        contact@example.com
+                        marvinjameserosa@gmail.com
                       </a>
                     </div>
                   </div>
