@@ -43,9 +43,9 @@ export default function Experience() {
     },
     {
       company: "Accenture",
-      position: "Package App Development Associate Intern",
-      period: "Jul. 2024 – Sep. 2024",
-      type: "internship",
+      position: "Data Engineer",
+      period: "Jan. 2024 – Dec. 2024",
+      type: "Contract",
       description:
         "Building automated workflow solutions and data pipelines to streamline enterprise-level operations.",
       technologies: [
